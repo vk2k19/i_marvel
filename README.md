@@ -27,4 +27,4 @@ A simple learning showcase of API integration. This shows list of Marvel charact
 
 ## screenshot
 
-<img src = './docs/app-spalsh.png' width=250px/> <img src = './docs/app-loading.png' width=250px/> <img src = './docs/app-list-page.png' width=250px/> <img src = './docs/app-home-page.png' width=250px/> <img src = './docs/app-details-page.png' width=250px/> 
+<img src = './docs/app-splash.png' width=250px/> <img src = './docs/app-loading-page.png' width=250px/> <img src = './docs/app-list-page.png' width=250px/> <img src = './docs/app-home-page.png' width=250px/> <img src = './docs/app-detail-page.png' width=250px/> 
