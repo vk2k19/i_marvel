@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:marvel_icons/app_routes.dart';
 import 'package:marvel_icons/components/custom_text.dart';
-import 'package:marvel_icons/screens/icons_screen.dart';
+import 'package:marvel_icons/states/app_state.dart';
+import 'package:provider/provider.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends StatelessWidget {
+  final routes = AppRoutes();
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
+  HomeScreen({super.key});
 
-class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final appState = Provider.of<AppState>(context);
     final width = MediaQuery.sizeOf(context).width * 1;
     final height = MediaQuery.sizeOf(context).height * 1;
 
@@ -59,10 +59,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 fontWeight: FontWeight.bold)),
         SizedBox(height: height * 0.04),
         ElevatedButton(
-            onPressed: () => {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => IconsScreen()))
-                },
+            onPressed: () {
+              if (appState.searchText.isNotEmpty) {
+                appState.setSearchText('');
+                appState.refreshPage();
+              }
+              Navigator.pushNamed(context, routes.characters);
+            },
             child: Text('See all Marvel Iconic Character'))
       ]),
     );

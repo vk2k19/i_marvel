@@ -1,8 +1,8 @@
-class FetchResponse {
+class MarvelResponse {
   Map<String, dynamic>? data;
   String? error;
 
-  FetchResponse({
+  MarvelResponse({
     this.data,
     this.error,
   });

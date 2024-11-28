@@ -7,7 +7,7 @@ A Flutter project to view information of your favorite marvel characters.
 - Clone the project
 - Create a Marvel account and use your private and public key.
 > Developer account: https://developer.marvel.com/
-- Update these values in lib/utils/fetch_marvel_data.dart
+- Update these values in lib/services/marvel_service.dart
 - [Start a emulator to launch app](#run-command-for-emulators)
 - Open terminal and point to this app directory
 - [Update project dependencies](#update-project-dependencies)

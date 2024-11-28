@@ -23,7 +23,7 @@ class Status extends StatelessWidget {
     } else if (type == MessageType.warning) {
       icon = Icons.warning_amber_outlined;
       color = Colors.deepOrange;
-    } else if (type == MessageType.info) {
+    } else if (type == MessageType.error) {
       icon = Icons.error_outline;
       color = Colors.red;
     }
@@ -33,6 +33,7 @@ class Status extends StatelessWidget {
       children: [
         Container(
           color: bgColor,
+          alignment: Alignment.topCenter,
           child: Row(children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -45,10 +46,17 @@ class Status extends StatelessWidget {
             Expanded(
                 child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: CustomText(
-                  text: '${type?.name}: $message',
-                  type: CustomTextType.heading,
-                  color: color),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomText(
+                      text: (type?.name ?? '').toUpperCase(),
+                      type: CustomTextType.heading,
+                      color: color),
+                  CustomText(
+                      text: message, type: CustomTextType.body, color: color),
+                ],
+              ),
             )),
           ]),
         )

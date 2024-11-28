@@ -1,17 +1,52 @@
+import 'dart:io';
+import 'dart:ui';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:marvel_icons/app_routes.dart';
+import 'package:marvel_icons/screens/home_screen.dart';
+import 'package:marvel_icons/screens/icon_detail_screen.dart';
+import 'package:marvel_icons/screens/icons_screen.dart';
 import 'package:marvel_icons/screens/splash_screen.dart';
+import 'package:marvel_icons/states/app_state.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  FlutterError.onError = (details) {
+    FlutterError.presentError(details);
+
+    if (kDebugMode) {
+      print('Flutter Error: $details');
+    }
+    if (kReleaseMode) exit(1);
+  };
+  PlatformDispatcher.instance.onError = (error, stack) {
+    if (kDebugMode) {
+      print('PlatformDispatcher error: $error');
+    }
+    return true;
+  };
+  runApp(ChangeNotifierProvider(
+    create: (context) => AppState()..fetchCharacters(),
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final AppRoutes route = AppRoutes();
+
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      initialRoute: route.spalshScreen,
+      routes: {
+        route.spalshScreen: (context) => SpalshScreen(),
+        route.home: (context) => HomeScreen(),
+        route.characters: (context) => IconsScreen(),
+        '/details/:id': (context) => IconDetailScreen()
+      },
       title: 'MARVEL ICONS',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
@@ -29,7 +64,6 @@ class MyApp extends StatelessWidget {
             displaySmall: GoogleFonts.pacifico()),
         useMaterial3: true,
       ),
-      home: const SpalshScreen(),
     );
   }
 }
