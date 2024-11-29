@@ -4,7 +4,6 @@ import 'package:marvel_icons/app_routes.dart';
 import 'package:marvel_icons/components/custom_card.dart';
 import 'package:marvel_icons/components/custom_text.dart';
 import 'package:marvel_icons/models/character_model.dart';
-import 'package:marvel_icons/models/id_param_model.dart';
 
 class CharacterCard extends StatelessWidget {
   final routes = AppRoutes();
