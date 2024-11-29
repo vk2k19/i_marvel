@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
 import 'package:marvel_icons/models/character_model.dart';
 import 'package:marvel_icons/models/marvel_response_model.dart';
@@ -39,6 +37,7 @@ class AppState extends ChangeNotifier {
     } else {
       _hasError = true;
     }
+    notifyListeners();
   }
 
   void setLoading(bool isLoading) {

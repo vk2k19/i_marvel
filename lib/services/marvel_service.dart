@@ -5,8 +5,8 @@ import 'package:http/http.dart' as http;
 import 'package:marvel_icons/models/marvel_response_model.dart';
 
 class MarvelService {
-  static const String _apiKey = '<public-api-key-for-marvel-app>';
-  static const String _privateKey = '<private-api-key-for-marvel-app>';
+  static const String _apiKey = 'a8ed894ae7528121c52d125facbe53a6';
+  static const String _privateKey = '63db45cbb2482af38f91a19c8d298415968bc67f';
 
   static Future<MarvelResponse> getCharacters(
       int offset, int limit, String searchText) async {

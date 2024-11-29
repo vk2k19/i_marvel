@@ -17,7 +17,7 @@ class IconsScreen extends StatelessWidget {
     final ScrollController scrollController = ScrollController();
     final itemsCount = data.charactes.length;
 
-    print(' data here count ${data.totalItems}');
+    print(' data here count ${data.offset}');
 
     return Scaffold(
         backgroundColor: Colors.black,
@@ -52,48 +52,54 @@ class IconsScreen extends StatelessWidget {
         ),
         body: RefreshIndicator(
             onRefresh: data.refreshPage,
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: itemsCount + 1, // To allow loading
-              itemBuilder: (context, index) {
-                if (index < itemsCount) {
-                  return CharacterCard(
-                    character: data.charactes[index],
-                  );
-                } else if (data.isLoading) {
-                  return Loader(text: 'Loading');
-                } else if (data.hasError) {
-                  return Column(
-                    children: [
-                      Status(
-                          message: 'Something went wrong. Pulldown to refresh.',
-                          type: MessageType.error),
-                    ],
-                  );
-                } else if (data.hasMoreItems) {
-                  return Loader(
-                    text: 'Loading more',
-                    size: 16,
-                    type: LoaderType.dots,
-                  );
-                } else if (itemsCount == 0) {
-                  return Status(message: 'No data.');
-                } else {
-                  return Center(child: CustomText(text: '--X-- END --X--'));
-                }
-              },
-              controller: scrollController
-                ..addListener(() {
-                  if (data.isLoading || data.totalItems <= 20) {
-                    return; // Adjust the threshold as needed
-                  }
+            child: FutureBuilder(
+                future: Future.value(data.charactes),
+                builder: (context, snapshot) {
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: itemsCount + 1, // To allow loading
+                    itemBuilder: (context, index) {
+                      if (index < itemsCount) {
+                        return CharacterCard(
+                          character: data.charactes[index],
+                        );
+                      } else if (data.hasMoreItems) {
+                        return Loader(
+                          text: 'Loading more',
+                          size: 16,
+                          type: LoaderType.dots,
+                        );
+                      } else if (itemsCount == 0) {
+                        return Status(message: 'No data.');
+                      } else if (data.isLoading) {
+                        return Loader(text: 'Loading');
+                      } else if (data.hasError) {
+                        return Column(
+                          children: [
+                            Status(
+                                message:
+                                    'Something went wrong. Pulldown to refresh.',
+                                type: MessageType.error),
+                          ],
+                        );
+                      } else {
+                        return Center(
+                            child: CustomText(text: '--X-- END --X--'));
+                      }
+                    },
+                    controller: scrollController
+                      ..addListener(() {
+                        if (data.isLoading || data.totalItems <= 20) {
+                          return; // Adjust the threshold as needed
+                        }
 
-                  if (scrollController.position.pixels ==
-                          scrollController.position.maxScrollExtent &&
-                      data.hasMoreItems) {
-                    data.fetchCharacters();
-                  }
-                } as VoidCallback),
-            )));
+                        if (scrollController.position.pixels ==
+                                scrollController.position.maxScrollExtent &&
+                            data.hasMoreItems) {
+                          data.fetchCharacters();
+                        }
+                      } as VoidCallback),
+                  );
+                })));
   }
 }
