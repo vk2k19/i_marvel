@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 
 class CharacterModel {
   int? code;
@@ -21,7 +22,6 @@ class CharacterModel {
 
   fromJson(Map<String, dynamic> json) {
     try {
-      print('json ${jsonEncode(json)}');
       status = json["status"];
       copyright = json["copyright"];
       attributionText = json["attributionText"];
@@ -34,7 +34,9 @@ class CharacterModel {
         code = json["code"];
       }
     } catch (_) {
-      print("Error in JSON: $_");
+      if (kDebugMode) {
+        print("Error in JSON: $_");
+      }
     }
     return this;
   }
@@ -77,7 +79,9 @@ class CharactersResponseData {
       json["results"]
           .forEach((result) => results!.add(Character().fromJson(result)));
     } catch (e) {
-      print("Error in results: $e ${jsonEncode(json)}");
+      if (kDebugMode) {
+        print("Error in results: $e ${jsonEncode(json)}");
+      }
     }
     return this;
   }

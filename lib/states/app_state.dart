@@ -39,6 +39,7 @@ class AppState extends ChangeNotifier {
     } else {
       _hasError = true;
     }
+    notifyListeners();
   }
 
   void setLoading(bool isLoading) {
