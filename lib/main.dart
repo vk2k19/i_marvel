@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
         route.spalshScreen: (context) => SpalshScreen(),
         route.home: (context) => HomeScreen(),
         route.characters: (context) => IconsScreen(),
-        '/details/:id': (context) => IconDetailScreen()
+        route.characterDetail: (context) => IconDetailScreen()
       },
       title: 'MARVEL ICONS',
       theme: ThemeData(
