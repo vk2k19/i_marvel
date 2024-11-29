@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:marvel_icons/components/character_card.dart';
 import 'package:marvel_icons/components/custom_loading.dart';
@@ -16,8 +14,6 @@ class IconsScreen extends StatelessWidget {
     final data = Provider.of<AppState>(context);
     final ScrollController scrollController = ScrollController();
     final itemsCount = data.charactes.length;
-
-    print(' data here count ${data.totalItems}');
 
     return Scaffold(
         backgroundColor: Colors.black,

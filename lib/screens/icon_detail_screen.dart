@@ -63,7 +63,7 @@ class IconDetailScreen extends StatelessWidget {
                 CharacterInfoList(
                   title: 'Stories',
                   activites: character.stories!.items!
-                      .map((x) => '${x.type!.name}:${x.name}')
+                      .map((x) => '${x.type?.name ?? 'unknown'}:${x.name}')
                       .toList(),
                 ),
                 SizedBox(height: 8),
