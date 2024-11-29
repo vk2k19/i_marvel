@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:marvel_icons/app_routes.dart';
 import 'package:marvel_icons/components/character_info_list.dart';
 import 'package:marvel_icons/components/custom_text.dart';
+import 'package:marvel_icons/models/character_model.dart';
 import 'package:marvel_icons/states/app_state.dart';
 import 'package:provider/provider.dart';
 
@@ -12,10 +13,9 @@ class IconDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final id = ModalRoute.of(context)?.settings.arguments as String;
+    final id = ModalRoute.of(context)?.settings.arguments as int;
     final data = Provider.of<AppState>(context);
-    final character = data.getCharacterDetails(id);
-
+    final Character character = data.getCharacterDetails(id);
     if (character.name == null || character.name!.isEmpty) {
       Navigator.pushNamed(context, routes.characters);
       return CustomText(text: 'Missing info redirecting to Icons list...');

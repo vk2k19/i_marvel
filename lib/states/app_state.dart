@@ -51,8 +51,8 @@ class AppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  Character getCharacterDetails(String id) {
-    return _characters.firstWhere((character) => '${character.id}' == id,
+  Character getCharacterDetails(int id) {
+    return _characters.firstWhere((character) => character.id == id,
         orElse: () => Character());
   }
 
