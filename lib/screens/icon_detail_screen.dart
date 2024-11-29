@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:marvel_icons/app_routes.dart';
 import 'package:marvel_icons/components/character_info_list.dart';
 import 'package:marvel_icons/components/custom_text.dart';
 import 'package:marvel_icons/models/character_model.dart';
+import 'package:marvel_icons/states/app_state.dart';
+import 'package:provider/provider.dart';
 
 class IconDetailScreen extends StatelessWidget {
-  final Character character;
+  final routes = AppRoutes();
 
-  const IconDetailScreen({super.key, required this.character});
+  IconDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    if (character.id == null) {
-      Future.delayed(const Duration(milliseconds: 500), () {
-        Navigator.pop(context);
-      });
-      return SafeArea(
-          child: Center(
-              child:
-                  CustomText(text: 'Missing information. Redirecting back.')));
+    final id = ModalRoute.of(context)?.settings.arguments as int;
+    final data = Provider.of<AppState>(context);
+    final Character character = data.getCharacterDetails(id);
+    if (character.name == null || character.name!.isEmpty) {
+      Navigator.pushNamed(context, routes.characters);
+      return CustomText(text: 'Missing info redirecting to Icons list...');
     }
+
     return SafeArea(
         child: Scaffold(
       backgroundColor: Colors.black,
@@ -61,7 +63,7 @@ class IconDetailScreen extends StatelessWidget {
                 CharacterInfoList(
                   title: 'Stories',
                   activites: character.stories!.items!
-                      .map((x) => '${x.type!.name}:${x.name}')
+                      .map((x) => '${x.type?.name ?? 'unknown'}:${x.name}')
                       .toList(),
                 ),
                 SizedBox(height: 8),

@@ -20,6 +20,7 @@ dependencies:
   intl: 
   cached_network_image:
   crypto: ^3.0.6
+  provider: ^6.1.2
 
 dev_dependencies:
   flutter_test:

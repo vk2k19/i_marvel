@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:marvel_icons/app_routes.dart';
 import 'package:marvel_icons/components/custom_card.dart';
 import 'package:marvel_icons/components/custom_text.dart';
 import 'package:marvel_icons/models/character_model.dart';
-import 'package:marvel_icons/screens/icon_detail_screen.dart';
 
 class CharacterCard extends StatelessWidget {
+  final routes = AppRoutes();
   final Character character;
-  const CharacterCard({
+
+  CharacterCard({
     super.key,
     required this.character,
   });
@@ -41,13 +43,10 @@ class CharacterCard extends StatelessWidget {
 
     return GestureDetector(
         onTap: () {
-          Navigator.push(
+          Navigator.pushNamed(
             context,
-            MaterialPageRoute(
-              builder: (context) => IconDetailScreen(
-                character: character,
-              ),
-            ),
+            routes.characterDetail,
+            arguments: character.id!,
           );
         },
         child: CustomCard(

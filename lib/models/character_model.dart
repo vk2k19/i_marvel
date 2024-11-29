@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'package:flutter/foundation.dart';
+
 class CharacterModel {
   int? code;
   String? status;
@@ -5,7 +8,7 @@ class CharacterModel {
   String? attributionText;
   String? attributionHtml;
   String? etag;
-  ResponseData? data;
+  CharactersResponseData? data;
 
   CharacterModel({
     this.code,
@@ -18,16 +21,22 @@ class CharacterModel {
   });
 
   fromJson(Map<String, dynamic> json) {
-    status = json["status"];
-    copyright = json["copyright"];
-    attributionText = json["attributionText"];
-    attributionHtml = json["attributionHTML"];
-    etag = json["etag"];
-    if (json['data'] != null) {
-      data = ResponseData().fromJson(json['data']);
-    }
-    if (json["code"] != null) {
-      code = json["code"];
+    try {
+      status = json["status"];
+      copyright = json["copyright"];
+      attributionText = json["attributionText"];
+      attributionHtml = json["attributionHTML"];
+      etag = json["etag"];
+      if (json['data'] != null) {
+        data = CharactersResponseData().fromJson(json['data']);
+      }
+      if (json["code"] != null) {
+        code = json["code"];
+      }
+    } catch (_) {
+      if (kDebugMode) {
+        print("Error in JSON: $_");
+      }
     }
     return this;
   }
@@ -45,14 +54,14 @@ class CharacterModel {
   }
 }
 
-class ResponseData {
+class CharactersResponseData {
   int? offset;
   int? limit;
   int? total;
   int? count;
   List<Character>? results;
 
-  ResponseData({
+  CharactersResponseData({
     this.offset,
     this.limit,
     this.total,
@@ -65,9 +74,15 @@ class ResponseData {
     limit = json["limit"] as int;
     total = json["total"] as int;
     count = json["count"] as int;
-    results = <Character>[];
-    json["results"]
-        .forEach((result) => results!.add(Character().fromJson(result)));
+    try {
+      results = <Character>[];
+      json["results"]
+          .forEach((result) => results!.add(Character().fromJson(result)));
+    } catch (e) {
+      if (kDebugMode) {
+        print("Error in results: $e ${jsonEncode(json)}");
+      }
+    }
     return this;
   }
 
@@ -195,7 +210,6 @@ class ComicsItem {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    print('to json: $resourceUri, $name');
     data["resourceUri"] = resourceUri;
     data["name"] = name;
     return data;

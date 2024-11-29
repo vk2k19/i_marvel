@@ -3,10 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:marvel_icons/app_routes.dart';
 import 'package:marvel_icons/screens/home_screen.dart';
 
 class SpalshScreen extends StatefulWidget {
-  const SpalshScreen({super.key});
+  final routes = AppRoutes();
+  SpalshScreen({super.key});
 
   @override
   State<SpalshScreen> createState() => _SpalshScreenState();
@@ -17,8 +19,7 @@ class _SpalshScreenState extends State<SpalshScreen> {
   void initState() {
     super.initState();
     Timer(Duration(seconds: 2), () {
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => HomeScreen()));
+      Navigator.of(context).pushReplacementNamed(widget.routes.home);
     });
   }
 
