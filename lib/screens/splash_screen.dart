@@ -19,7 +19,7 @@ class _SpalshScreenState extends State<SpalshScreen> {
   void initState() {
     super.initState();
     Timer(Duration(seconds: 2), () {
-      Navigator.of(context).pushReplacementNamed(widget.routes.home);
+      Navigator.of(context).pushReplacementNamed(widget.routes.homeScreen);
     });
   }
 

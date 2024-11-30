@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:marvel_icons/app_routes.dart';
 import 'package:marvel_icons/screens/home_screen.dart';
-import 'package:marvel_icons/screens/icon_detail_screen.dart';
-import 'package:marvel_icons/screens/icons_screen.dart';
+import 'package:marvel_icons/screens/character_detail_screen.dart';
+import 'package:marvel_icons/screens/characters_screen.dart';
 import 'package:marvel_icons/screens/splash_screen.dart';
 import 'package:marvel_icons/states/app_state.dart';
 import 'package:provider/provider.dart';
@@ -43,9 +43,9 @@ class MyApp extends StatelessWidget {
       initialRoute: route.spalshScreen,
       routes: {
         route.spalshScreen: (context) => SpalshScreen(),
-        route.home: (context) => HomeScreen(),
-        route.characters: (context) => IconsScreen(),
-        route.characterDetail: (context) => IconDetailScreen()
+        route.homeScreen: (context) => HomeScreen(),
+        route.charactersScreen: (context) => CharactersScreen(),
+        route.characterDetailScreen: (context) => CharacterDetailScreen()
       },
       title: 'MARVEL ICONS',
       theme: ThemeData(

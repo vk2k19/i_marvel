@@ -64,7 +64,7 @@ class HomeScreen extends StatelessWidget {
                 appState.setSearchText('');
                 appState.refreshPage();
               }
-              Navigator.pushNamed(context, routes.characters);
+              Navigator.pushNamed(context, routes.charactersScreen);
             },
             child: Text('See all Marvel Iconic Character'))
       ]),
