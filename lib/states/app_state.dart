@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
 import 'package:marvel_icons/models/character_model.dart';
 import 'package:marvel_icons/models/marvel_response_model.dart';
@@ -16,7 +14,7 @@ class AppState extends ChangeNotifier {
   bool _hasError = false;
 
   get isLoading => _isLoading;
-  get charactes => _characters;
+  get characters => _characters;
   get offset => _offset;
   get limit => _limit;
   get hasMoreItems => _hasMoreItems;

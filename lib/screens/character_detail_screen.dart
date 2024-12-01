@@ -6,10 +6,10 @@ import 'package:marvel_icons/models/character_model.dart';
 import 'package:marvel_icons/states/app_state.dart';
 import 'package:provider/provider.dart';
 
-class IconDetailScreen extends StatelessWidget {
+class CharacterDetailScreen extends StatelessWidget {
   final routes = AppRoutes();
 
-  IconDetailScreen({super.key});
+  CharacterDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class IconDetailScreen extends StatelessWidget {
     final data = Provider.of<AppState>(context);
     final Character character = data.getCharacterDetails(id);
     if (character.name == null || character.name!.isEmpty) {
-      Navigator.pushNamed(context, routes.characters);
+      Navigator.pushNamed(context, routes.charactersScreen);
       return CustomText(text: 'Missing info redirecting to Icons list...');
     }
 

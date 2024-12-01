@@ -1,22 +1,27 @@
 class AppRoutes {
   final String _spalshScreen = '/';
-  final String _home = '/home';
-  final String _characters = '/characters';
-  final String _characterDetail = '/details';
+  final String _homeScreen = '/home';
+  final String _charactersScreen = '/characters';
+  final String _characterDetailScreen = '/details';
+  final String _settingsScreen = '/settings';
 
   get spalshScreen {
     return _spalshScreen;
   }
 
-  get home {
-    return _home;
+  get homeScreen {
+    return _homeScreen;
   }
 
-  get characters {
-    return _characters;
+  get charactersScreen {
+    return _charactersScreen;
   }
 
-  get characterDetail {
-    return _characterDetail;
+  get characterDetailScreen {
+    return _characterDetailScreen;
+  }
+
+  get settingsScreen {
+    return _settingsScreen;
   }
 }

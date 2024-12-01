@@ -45,7 +45,7 @@ class CharacterCard extends StatelessWidget {
         onTap: () {
           Navigator.pushNamed(
             context,
-            routes.characterDetail,
+            routes.characterDetailScreen,
             arguments: character.id!,
           );
         },

@@ -6,14 +6,14 @@ import 'package:marvel_icons/components/custom_text.dart';
 import 'package:marvel_icons/states/app_state.dart';
 import 'package:provider/provider.dart';
 
-class IconsScreen extends StatelessWidget {
-  const IconsScreen({super.key});
+class CharactersScreen extends StatelessWidget {
+  const CharactersScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final data = Provider.of<AppState>(context);
     final ScrollController scrollController = ScrollController();
-    final itemsCount = data.charactes.length;
+    final itemsCount = data.characters.length;
 
     return Scaffold(
         backgroundColor: Colors.black,
@@ -54,7 +54,7 @@ class IconsScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 if (index < itemsCount) {
                   return CharacterCard(
-                    character: data.charactes[index],
+                    character: data.characters[index],
                   );
                 } else if (data.isLoading) {
                   return Loader(text: 'Loading');

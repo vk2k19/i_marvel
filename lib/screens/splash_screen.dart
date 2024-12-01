@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:marvel_icons/app_routes.dart';
-import 'package:marvel_icons/screens/home_screen.dart';
 
 class SpalshScreen extends StatefulWidget {
   final routes = AppRoutes();
@@ -19,7 +18,7 @@ class _SpalshScreenState extends State<SpalshScreen> {
   void initState() {
     super.initState();
     Timer(Duration(seconds: 2), () {
-      Navigator.of(context).pushReplacementNamed(widget.routes.home);
+      Navigator.of(context).pushReplacementNamed(widget.routes.homeScreen);
     });
   }
 
@@ -29,14 +28,15 @@ class _SpalshScreenState extends State<SpalshScreen> {
     final width = MediaQuery.sizeOf(context).width * 1;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
             child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
               child: Image.asset(
-                'assets/images/iron_man_gs.png',
+                'assets/images/light_icon.png',
                 fit: BoxFit.cover,
                 width: width * 0.75,
               ),
@@ -48,7 +48,7 @@ class _SpalshScreenState extends State<SpalshScreen> {
           Text(
             'i.MARVEL',
             style: GoogleFonts.blackOpsOne(
-                color: Colors.black, fontSize: width * 0.15),
+                color: Colors.white, fontSize: width * 0.15),
             textAlign: TextAlign.center,
             maxLines: 1,
           ),
@@ -56,7 +56,7 @@ class _SpalshScreenState extends State<SpalshScreen> {
             height: height * 0.04,
           ),
           SpinKitThreeBounce(
-            color: Colors.black,
+            color: Colors.white,
             size: 64,
             duration: Duration(seconds: 3),
           )
